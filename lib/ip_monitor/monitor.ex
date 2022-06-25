@@ -1,7 +1,7 @@
 defmodule IpMonitor.Monitor do
   require Logger
   use GenServer
-  alias IpMonitor.{Settings, Pushover}
+  alias IpMonitor.{Settings, Pushover, Tasks}
 
   def start_link(state) do
     GenServer.start_link __MODULE__, state, name: :ip_monitor
@@ -73,7 +73,7 @@ defmodule IpMonitor.Monitor do
   defp run_tasks([]), do: :ok
 
   defp run_tasks([task | tail]) do
-    IpMonitor.Tasks.run task
+    Tasks.run task
     run_tasks tail
   end
 end
