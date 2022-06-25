@@ -1,21 +1,14 @@
-# IpMonitor
+# Synopsis
 
-**TODO: Add description**
+This repository is an Elixir learning exercise.
 
-## Installation
+Disclaimer : Do not use this code in production.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ip_monitor` to your list of dependencies in `mix.exs`:
+_(with all my repositories, the `le-` prefix mean `Learning Exercise`)_
 
-```elixir
-def deps do
-  [
-    {:ip_monitor, "~> 0.1.0"}
-  ]
-end
-```
+## Subject of the exercise
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/ip_monitor>.
+The subject of this exercice is to monitor the public IP of the local machine and when the IP change :
 
+- send a `Pushover` alert,
+- execute system commands.
