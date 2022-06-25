@@ -27,6 +27,7 @@ defmodule IpMonitor.MixProject do
 
   defp deps do
     [
+      {:yaml_elixir, "~> 2.8"}
     ]
   end
 
