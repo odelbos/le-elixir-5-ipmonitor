@@ -28,6 +28,7 @@ defmodule IpMonitor.Monitor do
           {:change, %{ip: new_ip} = new_state} ->
             Logger.info "Got IP : #{body} - (change)"
             Pushover.push_new_ip new_ip, state.ip
+            run_tasks Settings.get_tasks()
             {:noreply, new_state}
           {:set, new_state} ->
             Logger.info "Got IP : #{body} - (set state)"
@@ -67,5 +68,12 @@ defmodule IpMonitor.Monitor do
 
   defp compare_ip(ip, %{ip: _old_ip} = _state) do
     {:change, %{ip: ip}}
+  end
+
+  defp run_tasks([]), do: :ok
+
+  defp run_tasks([task | tail]) do
+    IpMonitor.Tasks.run task
+    run_tasks tail
   end
 end
