@@ -8,7 +8,8 @@ defmodule IpMonitor.Application do
   def start(_type, _args) do
     settings = Utils.parse_settings()
     children = [
-      {IpMonitor.Settings, settings}
+      {IpMonitor.Settings, settings},
+      {IpMonitor.Monitor, []}
     ]
     opts = [strategy: :one_for_one, name: IpMonitor.Supervisor]
     Supervisor.start_link(children, opts)
