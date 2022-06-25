@@ -1,0 +1,7 @@
+monitor:
+  every: 5mn                        # Check if ip has changed every 5mn
+                                    # (format can be: 10mn or 2h)
+
+services:
+  getip:
+    url: "https://ifconfig.me/ip"   # The external service to get the current public IP

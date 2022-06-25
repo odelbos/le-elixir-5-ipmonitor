@@ -27,6 +27,9 @@ ip_monitor-*.tar
 
 # -----
 
+# Ignore config files
+/config/settings.yml
+
 # Ignore Working files
 OLD.*
 ORIG.*
