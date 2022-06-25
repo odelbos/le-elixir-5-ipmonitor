@@ -1,19 +1,15 @@
 defmodule IpMonitor.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
 
   use Application
+  alias IpMonitor.Utils
 
   @impl true
   def start(_type, _args) do
+    settings = Utils.parse_settings()
     children = [
-      # Starts a worker by calling: IpMonitor.Worker.start_link(arg)
-      # {IpMonitor.Worker, arg}
+      {IpMonitor.Settings, settings}
     ]
-
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: IpMonitor.Supervisor]
     Supervisor.start_link(children, opts)
   end
