@@ -44,4 +44,11 @@ defmodule IpMonitor.Settings do
   def get_service_pushover() do
     Agent.get __MODULE__, & &1["services"]["pushover"]
   end
+
+  @doc """
+  Get tasks settings.
+  """
+  def get_tasks() do
+    Agent.get IpMonitor.Settings, & &1["tasks"]
+  end
 end
