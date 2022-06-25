@@ -1,6 +1,7 @@
 defmodule IpMonitor.Monitor do
   require Logger
   use GenServer
+  alias IpMonitor.{Settings, Pushover}
 
   def start_link(state) do
     GenServer.start_link __MODULE__, state, name: :ip_monitor
@@ -19,14 +20,14 @@ defmodule IpMonitor.Monitor do
   @impl true
   def handle_info(:get_ip, state) do
     {url, _every} = get_settings()
-
     opts = [timeout: 5000, recv_timeout: 5000, follow_redirect: false]
     response = HTTPoison.get url, [], opts
     case response do
       {:ok, %HTTPoison.Response{body: body, status_code: 200}} ->
         case compare_ip body, state do
-          {:change, new_state} ->
+          {:change, %{ip: new_ip} = new_state} ->
             Logger.info "Got IP : #{body} - (change)"
+            Pushover.push_new_ip new_ip, state.ip
             {:noreply, new_state}
           {:set, new_state} ->
             Logger.info "Got IP : #{body} - (set state)"
@@ -47,8 +48,8 @@ defmodule IpMonitor.Monitor do
   # -----
 
   defp get_settings() do
-    %{"url" => url} = IpMonitor.Settings.get_service_getip()
-    %{"every" => every} = IpMonitor.Settings.get_monitor()
+    %{"url" => url} = Settings.get_service_getip()
+    %{"every" => every} = Settings.get_monitor()
     {url, every}
   end
 
