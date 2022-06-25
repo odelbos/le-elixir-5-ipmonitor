@@ -11,6 +11,7 @@ defmodule IpMonitor.Application do
       {IpMonitor.Settings, settings},
       {IpMonitor.Monitor, %{ip: ""}},
       {IpMonitor.Pushover, []},
+      {IpMonitor.Tasks, []},
     ]
     opts = [strategy: :one_for_one, name: IpMonitor.Supervisor]
     Supervisor.start_link(children, opts)

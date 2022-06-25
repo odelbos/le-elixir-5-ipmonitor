@@ -11,3 +11,17 @@ services:
     url: "https://api.pushover.net//1/messages.json"
     user: "--your user-jey--"
     token: "--your-toekn--"
+
+tasks:
+  - name: "cmd1"
+    cmd: "ls"
+    params: ["-a", "-l", "/tmp"]
+
+  - name: "cmd2"
+    cmd: "du"
+    params: ["-h", "-d 1", "/tmp"]
+
+# If you don't want to execute any command, simply set an empty array, like so :
+# tasks: []
+#
+# The 'tasks' entry is required
