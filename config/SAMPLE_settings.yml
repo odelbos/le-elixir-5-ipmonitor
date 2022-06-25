@@ -5,3 +5,9 @@ monitor:
 services:
   getip:
     url: "https://ifconfig.me/ip"   # The external service to get the current public IP
+
+  pushover:
+    enable: true
+    url: "https://api.pushover.net//1/messages.json"
+    user: "--your user-jey--"
+    token: "--your-toekn--"

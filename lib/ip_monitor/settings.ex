@@ -28,7 +28,7 @@ defmodule IpMonitor.Settings do
   Get monitor settings.
   """
   def get_monitor() do
-    Agent.get IpMonitor.Settings, & &1["monitor"]
+    Agent.get __MODULE__, & &1["monitor"]
   end
 
   @doc """
@@ -36,5 +36,12 @@ defmodule IpMonitor.Settings do
   """
   def get_service_getip() do
     Agent.get __MODULE__, & &1["services"]["getip"]
+  end
+
+  @doc """
+  Get pushover service settings.
+  """
+  def get_service_pushover() do
+    Agent.get __MODULE__, & &1["services"]["pushover"]
   end
 end
