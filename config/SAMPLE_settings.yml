@@ -7,10 +7,10 @@ services:
     url: "https://ifconfig.me/ip"   # The external service to get the current public IP
 
   pushover:
-    enable: true
+    enable: true                    # Set it to 'false' if you don't want to use Pushover service
     url: "https://api.pushover.net//1/messages.json"
     user: "--your user-jey--"
-    token: "--your-toekn--"
+    token: "--your-token--"
 
 tasks:
   - name: "cmd1"
