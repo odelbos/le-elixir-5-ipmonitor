@@ -9,7 +9,7 @@ services:
   pushover:
     enable: true                    # Set it to 'false' if you don't want to use Pushover service
     url: "https://api.pushover.net//1/messages.json"
-    user: "--your user-jey--"
+    user: "--your user-key--"
     token: "--your-token--"
 
 tasks:
