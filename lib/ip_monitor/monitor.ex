@@ -38,10 +38,12 @@ defmodule IpMonitor.Monitor do
             {:noreply, state}
         end
       {:error, %HTTPoison.Error{reason: reason}} ->
-        Logger.warn "Error, #{reason}"
+        Logger.warn "Error: #{reason}"
+        Pushover.push_error reason
         {:noreply, state}
       _ ->
         Logger.warn "Unknown error"
+        Pushover.push_error "Unknown error"
         {:noreply, state}
     end
   end
