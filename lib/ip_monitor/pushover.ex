@@ -14,23 +14,28 @@ defmodule IpMonitor.Pushover do
   # -----
 
   def push_new_ip(new_ip, old_ip) do
-    GenServer.cast :pushover, {:push, new_ip, old_ip}
+    title = "Ip Change"
+    msg = "<b>Old IP:</b> #{old_ip}<br/><b>New IP:</b> #{new_ip}"
+    GenServer.cast :pushover, {:push, title, msg}
+  end
+
+  def push_error(err) do
+    title = "An Error Occur !"
+    GenServer.cast :pushover, {:push, title, err}
   end
 
   # -----
 
-  def handle_cast({:push, new_ip, old_ip}, state) do
+  def handle_cast({:push, title, msg}, state) do
     settings = Settings.get_service_pushover()
-    send_push new_ip, old_ip, settings
+    send_push title, msg, settings
     {:noreply, state}
   end
 
   # -----
 
-  defp send_push(new_ip, old_ip, %{"enable" => true} = settings) do
+  defp send_push(title, msg, %{"enable" => true} = settings) do
     %{"url" => url, "user" => user, "token" => token} = settings
-    title = "Alert : Ip change"
-    msg = "<b>Old IP:</b> #{old_ip}<br/><b>New IP:</b> #{new_ip}"
     params = %{
       user: user,
       token: token,
