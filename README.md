@@ -43,3 +43,35 @@ Edit the `settings.yml` file to suit your need.
 ```bash
 mix run --no-halt
 ```
+
+# Settings
+
+```yaml
+monitor:
+  every: 5mn                        # Check if ip has changed every 5mn
+                                    # (format can be: 10mn or 2h)
+
+services:
+  getip:
+    url: "https://ifconfig.me/ip"   # The external service to get the current public IP
+
+  pushover:
+    enable: true          # Set it to 'false' if you don't want to use Pushover service
+    url: "https://api.pushover.net//1/messages.json"
+    user: "--your user-jey--"
+    token: "--your-token--"
+
+tasks:
+  - name: "cmd1"
+    cmd: "ls"
+    params: ["-a", "-l", "/tmp"]
+
+  - name: "cmd2"
+    cmd: "du"
+    params: ["-h", "-d 1", "/tmp"]
+
+# If you don't want to execute any command, simply set an empty array, like so :
+# tasks: []
+#
+# The 'tasks' entry is required
+```
