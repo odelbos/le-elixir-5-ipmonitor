@@ -7,7 +7,7 @@ _... But I'm using it ... :)_
 
 _(with all my repositories, the `le-` prefix mean `Learning Exercise`)_
 
-### History
+### Story
 
 In my back country house there isn't any DSL, fiber and so on for Internet connection. So, I'm running the local network over a 4G modem. The public IP is changing frequently and I need to update some remote services configuration who have IP restriction access. I wanted to automate the process, here came up a nice little subject for having fun with `Elixir`.
 
